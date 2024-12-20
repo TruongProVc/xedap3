@@ -6,6 +6,7 @@ const path = require('path');
 const fs = require('fs');
 const Image = require('../models/Image')
 const { Op } = require("sequelize");
+
 exports.getAllProducts = async (req, res) => {
     try {
         const products = await Product.findAll({ include: Brand });

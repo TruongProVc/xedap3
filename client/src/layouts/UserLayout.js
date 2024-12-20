@@ -7,6 +7,7 @@ import AboutUs from "../Page/User/AboutUs";
 import HomePage from "../Page/User/HomePage";
 import ProductDetail from "../Page/User/ProductDetail";
 import Login from "../Page/Login/Login";
+import Cart from "../Page/User/Cart";
 
 const Layout = () => {
   const location = useLocation();
@@ -21,6 +22,9 @@ const Layout = () => {
           <Route path="/productdetails/:id" element={<ProductDetail />} />
           <Route path="/AllItem" element={<AllProducts />} />
           <Route path="/Login" element={<Login />} />
+          <Route path="/AboutUs" element={<AboutUs />} />
+          <Route path="/cart" element={<Cart />} /> {/* Trang giỏ hàng */}
+
         </Routes>
       </div>
       {!isLoginPage && <Footer />}

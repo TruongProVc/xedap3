@@ -3,17 +3,21 @@ const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const bodyParser = require("body-parser");
 const path = require("path");
+const session = require('express-session');
+
 // require("dotenv").config(); Để đọc biến môi trường từ tệp .env
 
 const app = express();
 const PORT = process.env.PORT || 3000; 
 const SECRET_KEY ="saddasdasadsasdadsas"; // Đọc khóa bí mật từ biến môi trường
 
+
 // Controller imports
 const { getAllBrands, addBrand, deleteBrand, editBrand } = require("./src/app/controller/BrandController");
 const { getAllProducts, addProduct, deleteProduct, getProductDetails, getProductSpecifications, searchProducts } = require("./src/app/controller/ProductController");
 const { getAllAccounts, getProfileAdmin } = require("./src/app/controller/AccountController");
 const { login } = require("./src/app/controller/LoginController");
+const { addToCart, getCart, updateQuantity, removeFromCart } = require('./src/app/controller/CartController');
 
 
 app.use(cors({ origin: "http://localhost:3001", credentials: true })); 
@@ -55,6 +59,16 @@ app.get("/privatesite/brands", authenticateJWT, getAllBrands);
 app.post("/privatesite/brands", authenticateJWT, addBrand);
 app.delete("/privatesite/brands/:id", authenticateJWT, deleteBrand);
 app.put("/privatesite/editbrand/:id", authenticateJWT, editBrand);
+//
+app.get('/products/:productId/specifications',getProductSpecifications)
+app.get('/products', getAllProducts);
+app.get('/brands', getAllBrands);
+//
+app.post('/cart/add', addToCart);
+app.get('/cart', getCart);
+app.post('/cart/update', updateQuantity);
+app.post('/cart/remove', removeFromCart);
+
 
 app.get("/", (req, res) => {
   res.json({ message: "Server đang chạy!" });

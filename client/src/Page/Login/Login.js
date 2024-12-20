@@ -178,6 +178,7 @@ const Login =()=>{
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
+                placeholder="User name"
               />
             </div>
             <div className="input-group">
@@ -186,6 +187,7 @@ const Login =()=>{
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                placeholder="Password"
               />
             </div>
             <button type="submit" className="login-btn">
